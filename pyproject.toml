@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rcode-robot"
+version = "0.1.0"
+description = "RCode Adam/Eva classroom SDK (queue + API via :9014)"
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [{ name = "RCode" }]
+dependencies = []
+
+[project.optional-dependencies]
+dev = []
+
+[tool.setuptools.packages.find]
+where = ["src"]
