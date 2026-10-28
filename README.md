@@ -60,6 +60,25 @@ finally:
 | Глаза | `eyes_skin`, `eyes_play`, `eyes_equalizer`, `eyes_show_ip` |
 | Сервы | `servos_*` (без колёс, скорость ≤ 30 %) |
 | Радио | `radio_play`, `radio_stop` |
+| Камера | `camera_url()` → OpenCV `VideoCapture` |
+
+### Камера + OpenCV
+
+```bash
+pip install opencv-python
+```
+
+```python
+import cv2
+from rcode_robot import Robot
+
+r = Robot("192.168.31.44", slot=1, name="Аня")
+cap = cv2.VideoCapture(r.camera_url())  # http://IP:18000/video_feed
+ok, frame = cap.read()
+if ok:
+    cv2.imwrite("shot.jpg", frame)
+cap.release()
+```
 
 Колёса и опасные админ-API в SDK **не** входят.
 

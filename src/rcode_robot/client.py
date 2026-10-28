@@ -368,6 +368,16 @@ class Robot:
     def servos_motions(self) -> dict[str, Any]:
         return self.proxy("/api/manual/motions", method="GET")
 
+    # ---- камера (MJPEG :18000, удобно для OpenCV) ----
+
+    def camera_url(self) -> str:
+        """URL MJPEG-потока для OpenCV / VideoCapture (HTTP, порт 18000)."""
+        return f"http://{self.host}:18000/video_feed"
+
+    def camera_url_https(self) -> str:
+        """Тот же поток через пульт HTTPS :8001 (самоподписанный cert — OpenCV обычно неудобен)."""
+        return f"https://{self.host}:8001/camera/{self.host}/video_feed"
+
     def __enter__(self) -> "Robot":
         self.acquire()
         return self
